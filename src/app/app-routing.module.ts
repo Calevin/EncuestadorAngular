@@ -5,7 +5,8 @@ import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 
 const routes: Routes = [
   {path: 'inicio', component: InicioComponent},
-  {path: 'encuesta', component: EncuestaComponent}
+  {path: 'encuesta', component: EncuestaComponent},
+  {path: '**', pathMatch: 'full', redirectTo: '/inicio'}
 ];
 
 @NgModule({
