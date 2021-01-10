@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-grafico-barra-horinzontal',
   templateUrl: './grafico-barra-horinzontal.component.html',
   styleUrls: ['./grafico-barra-horinzontal.component.css'],
 })
-export class GraficoBarraHorinzontalComponent implements OnInit {
+export class GraficoBarraHorinzontalComponent implements OnInit, OnDestroy {
   resultados = [
     {
       name: 'Opcion 1',
@@ -20,7 +20,6 @@ export class GraficoBarraHorinzontalComponent implements OnInit {
       value: 15,
     },
   ];
-  view: [number, number]  = [700, 400];
 
   // options
   showXAxis = true;
@@ -34,11 +33,31 @@ export class GraficoBarraHorinzontalComponent implements OnInit {
 
   colorScheme = 'nightLights';
 
-  constructor() {}
+  intervalo: any;
+
+  constructor() {
+
+    this.intervalo =  setInterval( () => {
+      console.log('tick');
+
+      const copiaResultados = [...this.resultados];
+
+      for( let i in this.resultados ) {
+        this.resultados[i].value = ( Math.round(Math.random() * 500)) ;
+      }
+
+      this.resultados = [...copiaResultados];
+
+    }, 1500);
+  }
 
   onSelect(event: any) {
     console.log(event);
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalo);
+  }
 }
