@@ -24,7 +24,11 @@ export class EncuestaComponent implements OnInit {
   votarJuego(juego: Juego){
     this.servicio.votarJuego( juego.id )
       .subscribe( ( rta: {ok: boolean, mensaje:string} ) => {
-        Swal.fire('Gracias', rta.mensaje, 'success');
+        if(rta.ok){
+          Swal.fire('Gracias', rta.mensaje, 'success');
+        } else {
+          Swal.fire('Error', rta.mensaje, 'error');
+        }
       });
   }
 }
