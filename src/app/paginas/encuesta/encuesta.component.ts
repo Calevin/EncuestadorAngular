@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EncuestaService } from '../../servicios/encuesta.service';
+import { Juego } from '../../interfaces/interfaces';
+
 
 @Component({
   selector: 'app-encuesta',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EncuestaComponent implements OnInit {
 
-  constructor() { }
+  juegos: Juego[] = [];
+  constructor(private servicio: EncuestaService) { }
 
   ngOnInit(): void {
+    this.servicio.getEncuesta()
+    .subscribe( resp => {
+      this.juegos = resp;
+    });
   }
-
 }
