@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,12 +14,14 @@ import { ComponentesModule } from './componentes/componentes.module';
 import { InicioComponent } from './paginas/inicio/inicio.component';
 import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 import { environment } from 'src/environments/environment';
+import { LoginComponent } from './paginas/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { environment } from 'src/environments/environment';
     ComponentesModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
