@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EncuestaService } from '../../servicios/encuesta.service';
 import { Juego } from '../../interfaces/interfaces';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -18,5 +19,12 @@ export class EncuestaComponent implements OnInit {
     .subscribe( resp => {
       this.juegos = resp;
     });
+  }
+
+  votarJuego(juego: Juego){
+    this.servicio.votarJuego( juego.id )
+      .subscribe( ( rta: {ok: boolean, mensaje:string} ) => {
+        Swal.fire('Gracias', rta.mensaje, 'success');
+      });
   }
 }

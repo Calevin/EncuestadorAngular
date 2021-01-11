@@ -13,4 +13,8 @@ export class EncuestaService {
   getEncuesta(){
     return this.http.get<Juego[]>(`${ environment.urlServicio }/api/encuesta`);
   }
+
+  votarJuego( id: string) {
+    return this.http.post(`${ environment.urlServicio }/api/encuesta/${ id }`, {});
+  }
 }
